@@ -53,19 +53,17 @@ public class TictactoeService extends GameComponent {
         //Set value to board
         board[row][col] = currentPlayer;
 
-        //Check is all position is occupied
-        if(!canPlay()){
-            isGameOver = true;
-            return new MoveResponse("success", "Game is draw", currentPlayer, isGameOver, true);
-        }
-
         if (checkWinner(currentPlayer)) {
             System.out.println("Player : " + currentPlayer + " is the winner");
             isGameOver = true;
             return new MoveResponse("success", "winner is " + currentPlayer, currentPlayer, isGameOver, false);
         }
 
-
+        //Check is all position is occupied
+        if(!canPlay()){
+            isGameOver = true;
+            return new MoveResponse("success", "Game is draw", currentPlayer, isGameOver, true);
+        }
 
         //Switch player
         if (currentPlayer.equalsIgnoreCase("X")) {
