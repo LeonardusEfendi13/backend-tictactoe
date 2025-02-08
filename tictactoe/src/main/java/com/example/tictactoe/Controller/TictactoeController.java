@@ -37,7 +37,7 @@ public class TictactoeController {
     @PostMapping("/move")
     public ResponseEntity<MoveResponse> move(@RequestBody MoveRequest moveRequest) {
         if(moveRequest == null){
-            return ResponseEntity.ok(new MoveResponse("error","Row or Col is null", "", false));
+            return ResponseEntity.ok(new MoveResponse("error","Row or Col is null", "", false, false));
         }
         MoveResponse movePlayer = tictactoeService.playerMove(moveRequest.getRow(), moveRequest.getCol());
         return ResponseEntity.ok(movePlayer);

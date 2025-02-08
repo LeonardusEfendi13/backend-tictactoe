@@ -30,24 +30,24 @@ public class TictactoeService extends GameComponent {
 
         //Check is game still running
         if(isGameOver){
-            return new MoveResponse("error", "Game Over", currentPlayer, isGameOver);
+            return new MoveResponse("error", "Game Over", currentPlayer, isGameOver, false);
         }
 
         //Check if board initalized or not
         if (board == null) {
-            return new MoveResponse("error", "Board is not initalized yet", currentPlayer, isGameOver);
+            return new MoveResponse("error", "Board is not initalized yet", currentPlayer, isGameOver, false);
         }
 
         //Check is row or col input is more than size
         if(row > size-1 || col > size-1){
             System.out.println("input not valid");
-            return new MoveResponse("error", "Input not valid", currentPlayer, isGameOver);
+            return new MoveResponse("error", "Input not valid", currentPlayer, isGameOver, false);
         }
 
 
         //Check if position is occupied
         if (!board[row][col].equalsIgnoreCase(" ")) {
-            return new MoveResponse("error","Position is occupied", currentPlayer, isGameOver);
+            return new MoveResponse("error","Position is occupied", currentPlayer, isGameOver, false);
         }
 
         //Set value to board
@@ -56,13 +56,13 @@ public class TictactoeService extends GameComponent {
         //Check is all position is occupied
         if(!canPlay()){
             isGameOver = true;
-            return new MoveResponse("success", "Game is draw", currentPlayer, isGameOver);
+            return new MoveResponse("success", "Game is draw", currentPlayer, isGameOver, true);
         }
 
         if (checkWinner(currentPlayer)) {
             System.out.println("Player : " + currentPlayer + " is the winner");
             isGameOver = true;
-            return new MoveResponse("success", "winner is " + currentPlayer, currentPlayer, isGameOver);
+            return new MoveResponse("success", "winner is " + currentPlayer, currentPlayer, isGameOver, false);
         }
 
 
@@ -74,7 +74,7 @@ public class TictactoeService extends GameComponent {
             currentPlayer = "X";
         }
 
-        return new MoveResponse("success", "Switched to " + currentPlayer, currentPlayer, isGameOver);
+        return new MoveResponse("success", "Switched to " + currentPlayer, currentPlayer, isGameOver, false);
     }
 
     public GetBoardResponse getBoard() {

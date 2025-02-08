@@ -12,6 +12,7 @@ public class MoveResponse {
     private String message;
     private String currentPlayer;
     private Boolean isGameOver;
+    private Boolean isDraw;
 }
 
 

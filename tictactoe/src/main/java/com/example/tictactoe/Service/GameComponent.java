@@ -17,6 +17,7 @@ public abstract class GameComponent {
     protected int size;
     protected String currentPlayer;
     protected Boolean isGameOver = false;
+    protected Boolean isDraw = false;
 
     public abstract InitializeResponse init(int size);
     public abstract MoveResponse playerMove(int row, int col);
